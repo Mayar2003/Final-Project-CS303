@@ -8,7 +8,7 @@ import {
   Pressable,
   StyleSheet,
   SafeAreaView,
-  Image,Platform,ImageBackground
+  Image,Platform,ImageBackground,TouchableOpacity
 } from "react-native";
 import { register } from "../firebase/auth";
 import MyButton from "../Components/MyButton";
@@ -62,9 +62,12 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* {userPhoto && <Image source={{ uri: userPhoto }} style={styles.userPhoto} />} */}
-      <Button title="upload A photo" onPress={pickImage} />
-      <ImageBackground source={userPhoto} style={{width:200,height:200,paddingRight:50}}></ImageBackground>
+       <TouchableOpacity onPress={()=>pickImage()}>
+      {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
+      :   <Image source={require('../assets/no-profile-image.png')} style={styles.image} />
+      } 
+        </TouchableOpacity>
+      {/* <ImageBackground source={userPhoto} style={{width:200,height:200,paddingRight:50}}></ImageBackground> */}
       <TextInput
         placeholder="Name"
         value={userName}
@@ -87,7 +90,7 @@ const Register = () => {
       <MyButton onPress={handlePress}>
         <Text style={styles.buttonText}>Register</Text>
       </MyButton>
-      <Pressable onPress={() => router.replace("/account/login")}>
+      <Pressable onPress={() => router.replace("account/login")}>
         <Text style={styles.textLink}>Login</Text>
       </Pressable>
       <Pressable onPress={() => router.replace("/account/ForgetPassword")}>
@@ -134,6 +137,12 @@ const styles = StyleSheet.create({
     borderRadius: 75,
     alignSelf: 'center',
     marginBottom: 20,
+  },image: {
+    width: 150,
+    height: 150,
+    margin: 20,
+    borderRadius: 75, // Circular shape for the image
+    backgroundColor: "#fff", // White background color for the image
   },
 });
 
