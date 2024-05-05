@@ -77,15 +77,24 @@ const TodosList = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          padding: 2,
+          padding: 5,
           width: Dimensions.get("window").width
+          // width : 500
         }}
       >
-        <TextInput
+
+
+        
+        {/* <TextInput
           onChangeText={setTodoName}
-          style={{ flex: 2, borderColor: "black", borderWidth: 2 }}
-        />
-        <MyButton
+          style={{ flex: 2, borderColor: "#7469B6", borderWidth: 2 }}
+        /> */}
+
+
+
+
+
+        {/* <MyButton style={{backgroundColor :"#7469B6" }}
           onPress={() =>
             addTodo(user.uid, {
               name: todoName || "new todo" + todos.length,
@@ -93,7 +102,10 @@ const TodosList = () => {
               uid: user.uid,
             })
           }
-        ><Text style={{color: "white"}}>Add todo</Text></MyButton>
+        ><Text style={{color: "#FFE6E6"}}>Add to Cart</Text></MyButton> */}
+
+
+
       </View>
       {!loaded ? (
         <ActivityIndicator />

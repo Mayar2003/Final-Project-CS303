@@ -59,6 +59,7 @@ export default function SimpleScrollView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     // backgroundColor: "#fff",
     // alignItems: "stretch",
     // justifyContent: "flex-start",
@@ -71,6 +72,8 @@ const styles = StyleSheet.create({
   items: {
     // backgroundColor: "green",
     padding: 2,
-    borderWidth: 1
+    borderWidth: 1,
+    flexDirection:"column"
+
   },
 });
