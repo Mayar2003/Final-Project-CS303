@@ -3,6 +3,8 @@ import { StyleSheet, Text, Image, Pressable } from "react-native";
 export default function Item({ iconSrc, text, onPress }) {
   return (
     // <View style={styles.item}>
+
+
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [{ opacity: pressed ? 0.2 : 1 }, styles.item]}
@@ -10,9 +12,13 @@ export default function Item({ iconSrc, text, onPress }) {
       <Image source={iconSrc} style={styles.image} />
       <Text style={styles.title}>{text}</Text>
     </Pressable>
+
+
+
     // </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   item: {
