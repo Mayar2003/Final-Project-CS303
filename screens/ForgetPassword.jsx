@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View, TextInput, Text, StyleSheet, Alert } from "react-native";
 import { sendPasswordResetEmail } from "../firebase/auth";
-// import Login from "../app/account/login";
+import Login from "../app/account/login";
 import { forget } from "../firebase/auth"; 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +28,7 @@ const ForgetPassword = () => {
       <TouchableOpacity onPress={handleForgotPassword} style={styles.button}>
         <Text style={styles.buttonText}>Send Email</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => router.replace('/app/account/register')} style={styles.link}>
+      <TouchableOpacity onPress={() => router.replace('/login')} style={styles.link}>
         <Text style={styles.linkText}>Back to Sign In</Text>
       </TouchableOpacity>
     </View>
