@@ -59,10 +59,10 @@ uploadTask.on('state_changed',
   }, 
   async() => {
     const downloadUrl =await  getDownloadURL(uploadTask.snapshot.ref);
-    // resolve({
-    //   downloadUrl,
-    //   metadata:uploadTask.snapshot.metadata
-    // })
+    resolve({
+      downloadUrl,
+      metadata:uploadTask.snapshot.metadata
+    })
     });
   });
 };
