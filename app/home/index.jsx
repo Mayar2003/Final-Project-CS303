@@ -6,7 +6,7 @@ import { logout } from "../../firebase/auth";
 
 export default function Page() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={{ flexDirection:"row", alignItems: "center", justifyContent: "center" }}>
       <Stack.Screen style={{ flexDirection: "column"}}
         options={{
           // https://reactnavigation.org/docs/headers#setting-the-header-title
@@ -31,7 +31,7 @@ export default function Page() {
                 router.navigate("/account/login");
               }}
             >
-              <Text style={{ color: "#AD88C6"  }}>LogOut</Text>
+              <Text style={{ color: "#AD88C6"  ,fontFamily:'cursive'}}>LogOut</Text>
             </MyButton>
           ),
         }}

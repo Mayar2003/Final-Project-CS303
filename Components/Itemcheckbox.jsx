@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import MyButton from "./MyButton";
+// import LinearGradient from 'react-native-linear-gradient';
 
 export default function Item({
   isDone,
@@ -11,7 +12,8 @@ export default function Item({
 }) 
 {
   return (
-    <View style={styles.item}>
+    <View style={styles.item} >
+     
 
     <Pressable
       onPress={onPress}
@@ -41,8 +43,9 @@ export default function Item({
         }
 
       </Pressable>
-      <Text style={styles.title }>{text}</Text>
-      {/* <MyButton color={"red"} onPress={onDelete}><Text style={{color: "white"}}>Delete</Text></MyButton> */}
+      <Text  style={styles.title }>{text}</Text>
+      {/* <Text style={styles.look}>take a look ! </Text> */}
+      <MyButton color={"#7469B6"} /*onPress={onDelete}*/><Text style={styles.look}>Take a look !</Text></MyButton>
     </Pressable>
      </View>
   );
@@ -85,26 +88,38 @@ const styles = StyleSheet.create({
     color: "black",
   },
 
+  look:{
+    // fontFamily
+    fontSize:15,
+    color:'#FFE6E6',
+    textAlign:'right',
+    fontFamily:'cursive'
+    // marginRight:0,
+  },
+
   //todos not
   item: {
     // backgroundColor: "black",
-    // padding: 5,
+   // backgroundi: linear-gradient(to left top, #f9c9c9, #efb5c2, #e0a3c1, #cb94c3, #ad88c6);
+   // padding: 5,
     // marginVertical: 5,
     // marginHorizontal: 5,
-    flexDirection: "row",
+    // flexDirection: "row",
     justifyContent: "space-between",
+    alignItems:"center",
+    flexDirection: "column",
+    justifyContent:'center',
+    
     
   },
 
   title: {
     // flex: 1,
     color:'pink',
-    marginLeft:40,
+    // marginLeft:40,
     marginVertical: 5,
     marginHorizontal: 5,
-    flexDirection: "row",
-    justifyContent:'center',
-
+    fontFamily:'cursive',
     borderColor:'#E1AFD1',
     borderRadius:10,
     borderStyle:'solid',
@@ -113,10 +128,15 @@ const styles = StyleSheet.create({
     marginRight:5,
     textAlign: "center",
     alignContent:"center",
-
+    flexDirection: "row",
+    justifyContent:'center',
     backgroundColor :"#fff9f9",
-    width:200,
-    height:150
+    width:1300,
+    height:150,
+    shadowColor: '#7469B6',
+    shadowOffset: { width: 10, height: 10 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
   },
 
   image: {

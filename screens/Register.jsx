@@ -8,7 +8,7 @@ import {
   Pressable,
   StyleSheet,
   SafeAreaView,
-  Image,Platform,ImageBackground,TouchableOpacity
+  Image,Platform,ImageBackground,TouchableOpacity, ImageResizeMode 
 } from "react-native";
 import { register } from "../firebase/auth";
 import MyButton from "../Components/MyButton";
@@ -61,12 +61,33 @@ const Register = () => {
   };
 
   return (
+    // resizeMode="cover"
+    
     <SafeAreaView style={styles.container}>
+      <ImageBackground
+       source={require('../assets/7053621.jpg')} 
+        // resizeMode="contain" 
+        resizeMode={Image.resizeMode.center}
+        // style={{ flex: 1, height: undefined, width: undefined }}
+
+         /*style={{width:1300 , height:1000 , backgroundColor:'rgba(0, 0, 0, 0.5)'}}*/ >
+      
+      </ImageBackground>
+
+        {/* <TouchableOpacity onPress={()=>pickImage()}>
+      {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
+      :   <Image source={require('../assets/7053621.jpg')} style={{width:1500 , height:800,paddingRight:50}}  />
+      } 
+        </TouchableOpacity> */}
+
+
        <TouchableOpacity onPress={()=>pickImage()}>
       {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
       :   <Image source={require('../assets/no-profile-image.png')} style={styles.image} />
       } 
         </TouchableOpacity>
+
+
       {/* <ImageBackground source={userPhoto} style={{width:200,height:200,paddingRight:50}}></ImageBackground> */}
       <TextInput
         placeholder="Name"
