@@ -3,9 +3,18 @@ import { TouchableOpacity, View, TextInput, Text, StyleSheet, Alert } from "reac
 import { sendPasswordResetEmail } from "../firebase/auth";
 import Login from "../app/account/login";
 import { forget } from "../firebase/auth"; 
+
+/*#132043
+#1F4172
+#F1B4BB
+#FDF0F0 */
+
+
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [resetEmailSent, setResetEmailSent] = useState(false);
+
+
   const handleForgotPassword = async () => {
     try {
       await forget(email);
@@ -16,18 +25,25 @@ const ForgetPassword = () => {
       Alert.alert('Error', 'Failed to send password reset email. Please try again later.');
     }
   };
+
+
   return (
-    <View style={styles.container}>
+    
+     <View style={styles.container}> 
       <Text style={styles.headerText}>Forget Password?</Text>
+      <Text style={styles.header2Text}>No Problem!</Text>
+
       <TextInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
         style={styles.input}
       />
-      <TouchableOpacity onPress={handleForgotPassword} style={styles.button}>
-        <Text style={styles.buttonText}>Send Email</Text>
+
+      <TouchableOpacity onPress={handleForgotPassword} style={styles.buttonS}>
+        <Text style={styles.buttonTextS}>Send Email</Text>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => router.replace('/login')} style={styles.link}>
         <Text style={styles.linkText}>Back to Sign In</Text>
       </TouchableOpacity>
@@ -37,43 +53,88 @@ const ForgetPassword = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+backgroundColor:"#FDF0F0",
+  flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 20,
+    marginHorizontal:0,
+  
+
   },
+
+
   headerText: {
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: "bold",
-    marginBottom: 20,
+    fontFamily:'cursive',
+    color:"#132043",
+    marginBottom: 5,
+
   },
+
+  header2Text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily:'cursive',
+    color:"#F1B4BB",
+    marginBottom: 80,
+  },
+
   input: {
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: 3,
+    borderRadius: 20,
+    borderColor:"#F1B4BB",
     padding: 10,
     marginBottom: 10,
-    width: "100%",
+    width: "80%",
+    color:"#1F4172",
+    fontFamily:'cursive',
+    backgroundColor: "#fff"
+
+
   },
-  button: {
+
+  buttonS: {
     width: "100%",
-    backgroundColor: "black",
+    backgroundColor: "#132043",
     padding: 15,
-    borderRadius: 5,
+    borderRadius: 30,
     alignItems: "center",
     marginTop: 10,
+    marginBottom: 15,
+    marginTop:20,
+    marginBottom:5,
+
+    width:"30%"
   },
-  buttonText: {
-    color: "white",
+
+  buttonTextS: {
+    color: "#F1B4BB",
     fontWeight: "bold",
-    fontSize: 18,
+    fontFamily:'cursive',
+    fontSize: 15,
+    
   },
+  
+
+
   link: {
-    marginTop: 20,
+    marginTop: 0,
+
   },
-  linkText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "blue",
+
+
+  linkText: { 
+    backgroundColor: "#F1B4BB",
+    padding: 15,
+    borderRadius: 30,
+    alignItems: "center",
+    // marginTop: 10,
+    width:"100%",
+    fontSize: 13,
+    // fontWeight: "bold",/
+    fontFamily:'cursive',
+    color: "#1F4172",
   },
 });
 

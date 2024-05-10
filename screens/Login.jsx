@@ -15,6 +15,14 @@ import { auth } from "../firebase/Config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MyButton from "../Components/MyButton";
 import ForgetPassword from "./ForgetPassword";
+
+
+/*#132043
+#1F4172
+#F1B4BB
+#FDF0F0 */
+
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +61,9 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput
+      <Text style={styles.header}>Let's Login !</Text>
+
+      <TextInput 
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
@@ -65,16 +75,26 @@ const Login = () => {
         onChangeText={setPassword}
         secureTextEntry
         style={styles.input}
-      />
-      <MyButton onPress={handleLogin} >
-        <Text style={styles.buttonText}>Login</Text>
-      </MyButton>
-      <Pressable onPress={()=>router.replace("/account/register")}>
+      /> 
+
+        <MyButton style={styles.mybuttonL} onPress={handleLogin} >
+          <Text style={styles.buttonTextL}>Login</Text>
+        </MyButton>
+
+      <View style={{flexDirection:"row" , justifyContent: 'space-Between'}}>
+
+   
+
+      <Pressable style={styles.mybuttonR} onPress={()=>router.replace("/account/register")}>
         <Text style={styles.textLink}>Register</Text>
       </Pressable>
-      <Pressable onPress={() => router.replace("/account/ForgetPassword")}>
+
+      <Pressable style={styles.mybuttonF} onPress={() => router.replace("/account/ForgetPassword")}>
         <Text style={styles.textLink}>Forgot Password</Text>
       </Pressable>
+
+</View>
+
       <Text style={styles.errorText}>{error.code}</Text>
     </SafeAreaView>
   );
@@ -83,32 +103,107 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 20,
+    backgroundColor:"#FDF0F0",
+    flexDirection:"column",
+    justifyContent: "center", 
+    alignItems: "center",
+    marginHorizontal:0,
   },
+
   input: {
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 12,
+
+    borderWidth: 3,
+    borderRadius: 20,
+    borderColor:"#F1B4BB",
+    padding: 10,
     marginBottom: 10,
-    borderColor: "#ccc",
-    backgroundColor: "#fff",
+    width: "75%",
+    color:"#1F4172",
+    fontFamily:'cursive',
+    backgroundColor: "#fff"
+
   },
+
+
+  buttonTextL: {
+    color: "#F1B4BB",
+    fontWeight: "bold",
+    fontFamily:'cursive',
+    fontSize: 20,
+    padding:0
+  },
+
   buttonText: {
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 16,
+    color: "#F1B4BB",
+    fontWeight: "bold",
+    fontFamily:'cursive',
+    fontSize: 13,
+    padding:0
   },
+
+  mybuttonL: {
+    // width: "10%",
+    backgroundColor: "#132043",
+    padding: 10,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 10,
+    width:"30%",
+    marginBottom:15,
+    marginTop:30
+
+
+  },
+
+  mybuttonR: {
+  
+    backgroundColor: "#F1B4BB",
+    padding: 15,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 10,
+    width:"30%",
+    justifyContent: "center",
+    marginRight :75
+
+  },
+
+  mybuttonF: {
+
+    backgroundColor: "#F1B4BB",
+    padding: 5,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 10,
+    width:"30%",
+    justifyContent: "center",
+    marginLeft :75,
+
+  },
+
   textLink: {
     textAlign: "center",
-    marginTop: 10,
-    color: "#007BFF",
-    textDecorationLine: "underline",
+    color: "#1F4172",
+    // fontWeight: "bold",
+    fontFamily:'cursive',
+   
   },
+
   errorText: {
     textAlign: "center",
-    color: "red",
+    color: "#132043",
     marginTop: 10,
+    fontFamily:'cursive',
+fontSize:20
+  },
+
+  header: {
+    fontSize: 40,
+    fontWeight: "bold",
+    fontFamily:'cursive',
+    color:"#132043",
+    marginBottom:70,
+    
   },
 });
 

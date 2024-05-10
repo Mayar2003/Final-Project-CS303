@@ -80,9 +80,10 @@ const HomeScreen = () => {
 
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <TextInput
-          style={{ flex: 1, borderWidth: 3 ,borderColor:"#FDF0F0", borderRadius:20, padding: 8, marginRight:5 ,marginBottom:20 ,marginTop:20}}
+          style={{ color:"#132043" ,fontFamily:"cursive", flex: 1, borderWidth: 3 ,borderColor:"#FDF0F0", borderRadius:20, padding: 8, marginRight:5 ,marginBottom:20 ,marginTop:20}}
           placeholder="Search products..."
           value={searchQuery}
+          
           onChangeText={setSearchQuery}
         />
 
@@ -94,8 +95,8 @@ const HomeScreen = () => {
         </MyButton>
       </View>
 
-            <Text style={{ color: "#1F4172" ,fontWeight:"bold" ,fontFamily:'cursive',fontSize:40}}>
-              Categories:</Text>
+            {/* <Text style={{ color: "#1F4172" ,fontWeight:"bold" ,fontFamily:'cursive',fontSize:40}}>
+              Categories:</Text> */}
             <FlatList
                 data={categories}
                 keyExtractor={(item) => item.id}
@@ -120,26 +121,31 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: '#fff',
     },
+
     title: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
     },
+
     categoryItem: {
         backgroundColor: '#f0f0f0',
         padding: 10,
         borderRadius: 5,
         marginRight: 10,
     },
+
     categoryText: {
         fontSize: 16,
     },
+
     productItem: {
         backgroundColor: '#FDF0F0',
         padding: 10,
         marginBottom: 10,
         borderRadius: 40,
     },
+
     productName: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -152,6 +158,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#F1B4BB',
     },
+
 });
 
 export default HomeScreen;

@@ -17,6 +17,10 @@ import ForgetPassword from "./ForgetPassword";
 import * as ImagePicker from 'expo-image-picker';
 
 
+/*#132043
+#1F4172
+#F1B4BB
+#FDF0F0 */
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -76,24 +80,30 @@ const Register = () => {
 
        <TouchableOpacity onPress={()=>pickImage()}>
       {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
-      :   <Image source={require('../assets/no-profile-image.png')} style={styles.image} />
+      : <Image source={require('../assets/no-profile-image.png')} style={styles.image} />
       } 
         </TouchableOpacity>
 
 
       {/* <ImageBackground source={userPhoto} style={{width:200,height:200,paddingRight:50}}></ImageBackground> */}
-      <TextInput
+      
+      
+      <TextInput 
         placeholder="Name"
         value={userName}
         onChangeText={setUserName}
         style={styles.input}
       />
+
+
       <TextInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
         style={styles.input}
       />
+
+
       <TextInput
         placeholder="Password"
         value={password}
@@ -101,62 +111,143 @@ const Register = () => {
         secureTextEntry
         style={styles.input}
       />
-      <MyButton onPress={handlePress}>
+
+
+      <MyButton style={{  
+
+          backgroundColor: "#132043",
+          padding: 10,
+          borderRadius: 30,
+          alignItems: "center",
+          marginTop: 10,
+          width:"30%",
+          marginBottom:15,
+          marginTop:30
+
+                }
+              }
+
+      
+      onPress={handlePress}>
         <Text style={styles.buttonText}>Register</Text>
-      </MyButton>
-      <Pressable onPress={() => router.replace("account/login")}>
+</MyButton>
+
+<View style={{flexDirection:"row" , justifyContent: 'space-Between'}}>
+      
+      <Pressable style={styles.mybuttonL} onPress={() => router.replace("account/login")}>
         <Text style={styles.textLink}>Login</Text>
       </Pressable>
-      <Pressable onPress={() => router.replace("/account/ForgetPassword")}>
+
+      <Pressable style={styles.mybuttonF} onPress={() => router.replace("/account/ForgetPassword")}>
         <Text style={styles.textLink}>Forgot Password</Text>
       </Pressable>
+
+</View>
       <Text style={styles.errorText}>{error.code}</Text>
+
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
+    backgroundColor:"#FDF0F0",
+    flexDirection:"column",
+    justifyContent: "center", 
+    alignItems: "center",
+    marginHorizontal:0,
+    backgroundColor:"#FDF0F0",
     justifyContent: "center",
-    marginHorizontal: 20,
   },
+
   input: {
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 12,
+ 
+
+    borderWidth: 3,
+    borderRadius: 20,
+    borderColor:"#F1B4BB",
+    padding: 10,
     marginBottom: 10,
-    borderColor: "#ccc",
-    backgroundColor: "#fff",
+    width: "75%",
+    color:"#1F4172",
+    fontFamily:'cursive',
+    backgroundColor: "#fff"
+
+
   },
+
+
+  
   buttonText: {
-    color: "#fff",
+    color: "#F1B4BB",
     textAlign: "center",
     fontSize: 16,
+    fontWeight: "bold",
+    fontFamily:'cursive',
+    fontSize: 20
   },
+
+
   textLink: {
     textAlign: "center",
-    marginTop: 10,
-    color: "#007BFF",
-    textDecorationLine: "underline",
+    color: "#1F4172",
+    // fontWeight: "bold",
+    fontFamily:'cursive',
+   
   },
+
   errorText: {
     textAlign: "center",
-    color: "red",
+    color: "#132043",
     marginTop: 10,
+    fontFamily:'cursive',
+    fontSize:20
   },
+  
   userPhoto: {
     width: 150,
     height: 150,
     borderRadius: 75,
     alignSelf: 'center',
     marginBottom: 20,
-  },image: {
+  },
+  
+  image: {
     width: 150,
     height: 150,
     margin: 20,
-    borderRadius: 75, // Circular shape for the image
-    backgroundColor: "#fff", // White background color for the image
+    borderRadius: 75, 
+    borderWidth:3,
+    borderColor:"#1F4172",
+  },
+
+
+  mybuttonL: {
+  
+    backgroundColor: "#F1B4BB",
+    padding: 15,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 10,
+    width:"30%",
+    justifyContent: "center",
+    marginRight :75
+
+  },
+
+  mybuttonF: {
+
+    backgroundColor: "#F1B4BB",
+    padding: 5,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 10,
+    width:"30%",
+    justifyContent: "center",
+    marginLeft :75,
+
   },
 });
 
