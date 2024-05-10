@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getReactNativePersistence } from '@firebase/auth/dist/rn/index.js';
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getStorage , ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
+import { getStorage ,ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
@@ -26,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const Storage =getStorage(app);
+// const storageRef = Storage.ref;
 const auth = getAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });

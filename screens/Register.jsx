@@ -48,7 +48,6 @@ const Register = () => {
       setUserPhoto(result.uri);
     }
   };
-
   const handlePress = async () => {
     try {
       const credentials = await register(email, password);
