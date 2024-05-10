@@ -15,6 +15,9 @@ import MyButton from "../Components/MyButton";
 import { addUser } from "../firebase/todos";
 import ForgetPassword from "./ForgetPassword";
 import * as ImagePicker from 'expo-image-picker';
+
+
+
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,16 +67,7 @@ const Register = () => {
     // resizeMode="cover"
     
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-       source={require('../assets/7053621.jpg')} 
-        // resizeMode="contain" 
-        resizeMode={Image.resizeMode.center}
-        // style={{ flex: 1, height: undefined, width: undefined }}
-
-         /*style={{width:1300 , height:1000 , backgroundColor:'rgba(0, 0, 0, 0.5)'}}*/ >
-      
-      </ImageBackground>
-
+  
         {/* <TouchableOpacity onPress={()=>pickImage()}>
       {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
       :   <Image source={require('../assets/7053621.jpg')} style={{width:1500 , height:800,paddingRight:50}}  />
