@@ -7,14 +7,12 @@ import {
   subscribe,
 } from "../../firebase/cities";
 import EditCity from "./EditCity";
-
 const CitiesList = () => {
   const getCitiesList = async () => {
     const c = await getCities();
     setCities(c);
     console.log("cities", c);
   };
-
   useEffect(() => {
     getCitiesList();
   }, []);
