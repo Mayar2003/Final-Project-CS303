@@ -8,19 +8,13 @@ import {
   Pressable,
   StyleSheet,
   SafeAreaView,
-  Image,Platform,ImageBackground,TouchableOpacity, ImageResizeMode 
+  Image,Platform,ImageBackground,TouchableOpacity
 } from "react-native";
 import { register } from "../firebase/auth";
 import MyButton from "../Components/MyButton";
 import { addUser } from "../firebase/todos";
 import ForgetPassword from "./ForgetPassword";
 import * as ImagePicker from 'expo-image-picker';
-
-
-/*#132043
-#1F4172
-#F1B4BB
-#FDF0F0 */
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -67,24 +61,12 @@ const Register = () => {
   };
 
   return (
-    // resizeMode="cover"
-    
     <SafeAreaView style={styles.container}>
-  
-        {/* <TouchableOpacity onPress={()=>pickImage()}>
-      {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
-      :   <Image source={require('../assets/7053621.jpg')} style={{width:1500 , height:800,paddingRight:50}}  />
-      } 
-        </TouchableOpacity> */}
-
-
        <TouchableOpacity onPress={()=>pickImage()}>
       {userPhoto ? <Image source={{ uri: userPhoto }} style={styles.userPhoto} />
       : <Image source={require('../assets/no-profile-image.png')} style={styles.image} />
       } 
         </TouchableOpacity>
-
-
       {/* <ImageBackground source={userPhoto} style={{width:200,height:200,paddingRight:50}}></ImageBackground> */}
       
       

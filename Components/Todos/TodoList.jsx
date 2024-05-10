@@ -72,15 +72,12 @@ const TodosList = () => {
   }, [user?.uid]);
  
   return (
-    <SafeAreaView style={{flex:1 , 
-   backgroundImage:"linear-gradient(to left top,#AD88C6,#FFE6E6 )"
-
-    }}>
+    <SafeAreaView style={{flex:1}}>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          // padding:0,
+          padding: 5,
           width: Dimensions.get("window").width
           // width : 500
         }}
@@ -113,7 +110,7 @@ const TodosList = () => {
       {!loaded ? (
         <ActivityIndicator />
       ) : (
-        <FlatList 
+        <FlatList
           // style={styles.list}
           data={todos}
           // keyExtractor={(item) => item.id}

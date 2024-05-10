@@ -1,31 +1,43 @@
-
-/*colors : 
-#132043
-#1F4172
-#F1B4BB
-#FDF0F0 */
-
-import React, { useState, useEffect } from 'react';
-import { Text, FlatList, StyleSheet, TouchableOpacity, TextInput, View , Pressable, Button } from 'react-native';
-import { collection, query, onSnapshot } from '@firebase/firestore';
-// import MyButton from "../../Components/MyButton";
+import { useState } from "react";
+import { StyleSheet, Text, Pressable, View } from "react-native";
 import MyButton from "./MyButton";
-// import { db,auth } from '../../firebase/Config';
-import { db,auth } from '../firebase/Config';
 
-const HomeScreen = () => {
-    const [user, setUser] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [categories, setCategories] = useState([]);
-    const [products, setProducts] = useState([]);
+export default function Item({
+  isDone,
+  text,
+  onPress,
+  onDelete,
+  onDone,
+}) 
+{
+  return (
+    <View style={styles.item}>
 
-    useEffect(() => {
-        // Fetch categories from Firestore
-        const  unsubscribeCategories = onSnapshot(query(collection(db, 'categories')), (snapshot) => {        
-                const categoriesList = snapshot.docs.map((doc) => doc.data());
-                setCategories(categoriesList);
-            });
-
+    <Pressable
+      onPress={onPress}
+      style={({ pressed  }) => [
+        // { opacity: pressed ? 0.2 : 1 },
+        styles.item,
+      ]}
+    >
+      <Pressable onPress={()=>{onDone();}}>
+        {({ pressed }) => (
+          <View
+            style={
+              // {styles.itemContainer}
+              [
+              // styles.checkbox,
+              // pressed && styles.pressed,
+            ]
+          }
+          >
+            {isDone && (
+              <Text style={styles.x}>
+                {/* {pressed?"o":"x"}x */}
+              </Text>
+            )}
+          </View>
+ 
         // Fetch products from Firestore
         const unsubscribeProducts = onSnapshot(query(collection(db, 'products')), (snapshot) => {
                 const productsList = snapshot.docs.map((doc) => doc.data());
@@ -36,7 +48,8 @@ const HomeScreen = () => {
             unsubscribeCategories();
             unsubscribeProducts();
         };
-    }, []);
+    }, 
+);
 
     const renderCategoryItem = ({ item }) => (
         <TouchableOpacity style={styles.categoryItem}>
@@ -159,6 +172,94 @@ const styles = StyleSheet.create({
         color: '#F1B4BB',
     },
 
-});
+      </Pressable>
 
-export default HomeScreen;
+      <Text style={styles.title }>{text}</Text>
+    </Pressable>
+     </View>
+  );
+}
+
+const styles = StyleSheet.create({
+//   checkbox: {
+//     height: 24,
+//     width: 24,
+//     backgroundColor: "#0ff",
+//     borderWidth: 2,
+//     borderRadius: 12,
+//     borderColor: "white",
+//   },
+
+
+  // checked: {
+  //   backgroundColor: "blue",
+  //   borderColor: "black",
+  // },
+
+
+  pressed: {
+    margin: 2,
+    height: 20,
+    width: 20,
+    // backgroundColor: "pink",
+  },
+
+
+  // x: {
+  //   fontSize: 24,
+  //   margin: -12,
+  //   paddingLeft: 14,
+  //   color: "white",
+  // },
+
+
+  selected: {
+    color: "black",
+  },
+
+  //todos not
+  item: {
+    // backgroundColor: "black",
+    // padding: 5,
+    // marginVertical: 5,
+    // marginHorizontal: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    
+  },
+
+  title: {
+    // flex: 1,
+    color:'pink',
+    marginLeft:40,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    flexDirection: "row",
+    justifyContent:'center',
+
+    borderColor:'#E1AFD1',
+    borderRadius:10,
+    borderStyle:'solid',
+    borderWidth:3,
+    fontSize: 32,
+    marginRight:5,
+    textAlign: "center",
+    alignContent:"center",
+
+    backgroundColor :"#fff9f9",
+    width:200,
+    height:150
+  },
+
+  image: {
+    width: 50,
+    height: 50,
+  },
+  // itemContainer:{  backgroundColor: "#f9c2ff",
+  // padding: 0,
+  // marginVertical: 5,
+  // marginHorizontal: 5,
+  // flexDirection: "column", // This will make each item in the FlatList use column direction
+  // justifyContent: "space-between",}
+
+});

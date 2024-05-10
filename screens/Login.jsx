@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
+
 import {
   View,
   TextInput,
@@ -32,13 +33,19 @@ const Login = () => {
     // console.log("auth().currentUser", auth.currentUser);
     const unsub = onAuthStateChanged(auth, 
       (user) => {
-        if(user){
-          AsyncStorage.setItem("user", JSON.stringify(user));
-          router.replace("/home");
-        }
-        else{
+    if(user){
+         if(email==='dohasaeed5550@gmail.com') {
+       router.replace(`/home/AddProductt`);
+          } else{
+        router.replace(`/home`);
+               }
+               AsyncStorage.setItem("user", JSON.stringify(user));
+              }
+      else{
           AsyncStorage.removeItem("user");
           router.replace("/account/login");
+          AsyncStorage.setItem("user", JSON.stringify(user));
+
         }
         // setUser(user)
       });
@@ -50,9 +57,11 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      
         const credentials = await login(email, password);
         console.log('credentials', credentials);
-        router.replace(`/home`);
+        
+        
     } catch (error) {
         console.log('error', JSON.stringify(error));
         setError(error);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View, TextInput, Text, StyleSheet, Alert } from "react-native";
 import { sendPasswordResetEmail } from "../firebase/auth";
+import { router } from "expo-router";
 import Login from "../app/account/login";
 import { forget } from "../firebase/auth"; 
 
@@ -18,11 +19,11 @@ const ForgetPassword = () => {
   const handleForgotPassword = async () => {
     try {
       await forget(email);
-      Alert.alert("Password Reset Email Sent", "Check your inbox for password reset instructions.");
+      alert("Password Reset Email Sent", "Check your inbox for password reset instructions.");
       setResetEmailSent(true);
     } catch (error) {
       console.error('Error sending password reset email:', error.message);
-      Alert.alert('Error', 'Failed to send password reset email. Please try again later.');
+      alert('Error', 'Failed to send password reset email. Please try again later.');
     }
   };
 
@@ -45,6 +46,10 @@ const ForgetPassword = () => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.replace('/login')} style={styles.link}>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.replace('/account/login')} style={styles.link}>
+
         <Text style={styles.linkText}>Back to Sign In</Text>
       </TouchableOpacity>
     </View>
