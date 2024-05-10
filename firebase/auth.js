@@ -41,29 +41,29 @@ async function logout() {
  * @param {*} name 
  * @param {*} onprogress 
  */
- const uploadToFirebase =async (uri,name,onprogress) =>{
-  const fetchResp =await fetch(uri);
-  const blob =await fetchResp.blob();
-  console.log(blob);
-  const imageRef = ref(Storage, `images/${name}`);
-const uploadTask = uploadBytesResumable(imageRef, blob);
-return new Promise((resolve,reject)=>{
-uploadTask.on('state_changed', 
-  (snapshot) => {
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-     onprogress && onprogress(progress);
-  }, 
-  (error) => {
-    // Handle unsuccessful uploads
-    reject(error);
-  }, 
-  async() => {
-    const downloadUrl =await  getDownloadURL(uploadTask.snapshot.ref);
-    resolve({
-      downloadUrl,
-      metadata:uploadTask.snapshot.metadata
-    })
-    });
-  });
-};
-export { register, login, logout,forget ,uploadToFirebase};
+//  const uploadToFirebase =async (uri,name,onprogress) =>{
+//   const fetchResp =await fetch(uri);
+//   const blob =await fetchResp.blob();
+//   console.log(blob);
+//   const imageRef = ref(Storage, `images/${name}`);
+// const uploadTask = uploadBytesResumable(imageRef, blob);
+// return new Promise((resolve,reject)=>{
+// uploadTask.on('state_changed', 
+//   (snapshot) => {
+//     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//      onprogress && onprogress(progress);
+//   }, 
+//   (error) => {
+//     // Handle unsuccessful uploads
+//     reject(error);
+//   }, 
+//   async() => {
+//     const downloadUrl =await  getDownloadURL(uploadTask.snapshot.ref);
+//     resolve({
+//       downloadUrl,
+//       metadata:uploadTask.snapshot.metadata
+//     })
+//     });
+//   });
+// };
+export { register, login, logout,forget };

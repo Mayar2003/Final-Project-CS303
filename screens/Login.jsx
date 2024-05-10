@@ -44,6 +44,8 @@ const Login = () => {
     try {
         const credentials = await login(email, password);
         console.log('credentials', credentials);
+        if(email=== `dohasaeed5550@gmail.com`)router.replace(`/home/AddProductt`);
+        else
         router.replace(`/home`);
     } catch (error) {
         console.log('error', JSON.stringify(error));
