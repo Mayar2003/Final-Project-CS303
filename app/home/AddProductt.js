@@ -8,10 +8,9 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { db,Storage } from "../../firebase/Config";
 import { StatusBar } from "expo-status-bar";
- HEAD
-import { Button } from "react-native";
-import {collection ,addDoc,getDocs} from "firebase/firestore";
-import {  getStorage,ref, uploadBytes, getDownloadURL} from "firebase/storage";
+// import { Button } from "react-native";
+// import {collection ,addDoc,getDocs} from "firebase/firestore";
+// import {  getStorage,ref, uploadBytes, getDownloadURL} from "firebase/storage";
 
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";

@@ -107,9 +107,13 @@ const TodosList = () => {
 
 
       </View>
-      {!loaded ? (
+
+      
+      {/* {!loaded ? (
         <ActivityIndicator />
       ) : (
+
+
         <FlatList
           // style={styles.list}
           data={todos}
@@ -126,7 +130,7 @@ const TodosList = () => {
             />
           )}
         />
-      )}
+      )} */}
     </SafeAreaView>
   );
 };

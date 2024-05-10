@@ -1,19 +1,26 @@
-import { Text, View } from "react-native";
+// import { Text, View } from "react-native";
+import { Text, View ,Image } from "react-native";
 import { Stack, router } from "expo-router";
 import TodosList from "../../Components/Todos/TodoList";
 import MyButton from "../../Components/MyButton";
 import { logout } from "../../firebase/auth";
+import Itemcheckbox from "../../Components/Itemcheckbox";
+import { ScrollView } from "react-native";
 
 export default function Page() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Stack.Screen style={{ flexDirection: "column"}}
-        options={{
-          // https://reactnavigation.org/docs/headers#setting-the-header-title
+    // <ScrollView>
+    
+    <View  style={{ flexDirection:"row", alignItems: "center", justifyContent: "center" }}>
+      <ScrollView >
+        
+        <Stack.Screen style={{ flexDirection: "column"}}
+       
+       options={{
           title: "All what you need !",
-          // https://reactnavigation.org/docs/headers#adjusting-header-styles
-          headerStyle: { backgroundColor: "#7469B6" , height:100  },
-          headerTintColor: "#FFE6E6",
+          headerStyle: { backgroundColor: "#132043" , height:100  },
+          headerTintColor: "#FDF0F0",
+
           headerTitleStyle: {
             fontSize: 40 ,
             marginLeft:450,
@@ -22,21 +29,26 @@ export default function Page() {
           },
           // https://reactnavigation.org/docs/headers#replacing-the-title-with-a-custom-component
           // headerTitle: props => <LogoTitle {...props} />,
+
           headerRight: (props) => (
             <MyButton
-              style={{marginRight:5 , backgroundColor: '#FFE6E6'}}
+              style={{marginRight:5 , backgroundColor: '#F1B4BB',borderRadius:30}}
               {...props}
               onPress={async () => {
                 await logout();
                 router.navigate("/account/login");
               }}
             >
-              <Text style={{ color: "#AD88C6"  }}>LogOut</Text>
-            </MyButton>
+
+              <Text style={{ color: "#1F4172" ,fontWeight:"bold" ,fontFamily:'cursive'}}>LogOut</Text>            </MyButton>
           ),
         }}
       />
-      <TodosList />
-    </View>
+      
+      <Itemcheckbox />
+       </ScrollView>
+      </View>
+     
+    
   );
 }
