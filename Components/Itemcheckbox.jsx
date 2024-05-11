@@ -505,30 +505,26 @@
 #1F4172
 #F1B4BB
 #FDF0F0 */
-
+import { useRouter } from 'expo-router';
 import React, { useState, useEffect } from 'react';
 import { Text ,ScrollView, Image, FlatList, StyleSheet, TouchableOpacity, TextInput, View , Pressable, Button } from 'react-native';
 import { collection, query, onSnapshot } from '@firebase/firestore';
 // import MyButton from "../../Components/MyButton";
 import MyButton from "./MyButton";
+import Product from '../app/home/todos/[id]';
 
-
-import { db,auth } from '../firebase/Config';
+import { app,db,auth} from '../firebase/Config';
 
 const HomeScreen = () => {
+
     const [user, setUser] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     // const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
-
+  
+  
     useEffect(() => {
-        // Fetch categories from Firestore
-        // const  unsubscribeCategories = onSnapshot(query(collection(db, 'categories')), (snapshot) => {        
-        //         const categoriesList = snapshot.docs.map((doc) => doc.data());
-        //         setCategories(categoriesList);
-        //     });
-
-        // Fetch products from Firestore
+        
         const unsubscribeProducts = onSnapshot(query(collection(db, 'products')), (snapshot) => {
                 const productsList = snapshot.docs.map((doc) => doc.data());
                 setProducts(productsList);
@@ -542,13 +538,6 @@ const HomeScreen = () => {
             </ScrollView>
         };
     }, []);
-
-    // const renderCategoryItem = ({ item }) => (
-    //     <TouchableOpacity style={styles.categoryItem}>
-    //         <Text style={styles.categoryText}>{item.name}</Text>
-    //     </TouchableOpacity>
-    // );
-
     const renderProductItem = ({ item }) => (
         <View style={styles.productItem}>
             <Text style={styles.productName}>{item.productName}</Text>
@@ -575,26 +564,25 @@ const HomeScreen = () => {
     // };
 
 
-    const handleSearch = async () => {
-        try {
-            const querySnapshot = await query(
-                collection(db, 'products'),
-                where('name', '>=', searchQuery.toLowerCase()),
-                where('name', '<=', searchQuery.toLowerCase() + '\uf8ff')
-            ).get();
-    
-            const filteredProducts = querySnapshot.docs.map((doc) => doc.data());
-            setProducts(filteredProducts);
-        } catch (error) {
-            console.error('Error searching products:', error);
-        }
-    };
-
+    const handleSearch = () => {
+      // Filter products based on search query
+      const filteredProducts = products.filter(product =>
+          product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      return filteredProducts;
+  };
     const signOut = () => {
       firebase.auth().signOut();
     };
 
-
+    async function getTodo(uid) {
+      const docRef = doc(db, `products/${uid}`);
+      const docSnap = await getDoc(docRef);
+    
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        return { id:  uid};
+      }}
     return (
         <View style={styles.container}>
 
@@ -627,11 +615,22 @@ const HomeScreen = () => {
 
               <ScrollView>
                 <View style={{paddingBottom: 20}}>
-                    {products.map((product, index) => (
-                        <TouchableOpacity key={index} onPress={() => {console.log("llll")}}>
-                            {renderProductItem({ item: product })}
-                        </TouchableOpacity>
-                    ))}
+                    {searchQuery === '' ? (
+                        // If search query is empty, display all products
+                        products.map((product, index) => (
+                          <TouchableOpacity key={index} onPress={() => console.log() }>
+
+                                {renderProductItem({ item: product })}
+                            </TouchableOpacity>
+                        ))
+                    ) : (
+                        // If search query is not empty, display filtered products
+                        handleSearch().map((product, index) => (
+                            <TouchableOpacity key={index} onPress={() => console.log("searching")}>
+                                {renderProductItem({ item: product })}
+                            </TouchableOpacity>
+                        ))
+                    )}
                 </View>
             </ScrollView>
 
